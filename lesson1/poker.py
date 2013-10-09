@@ -1,3 +1,5 @@
+import random
+
 def poker(hands):
   """Takes a list of poker hands and returns the winning hands"""
   return allmax(hands, key=hand_rank)
@@ -64,13 +66,24 @@ def two_pair(ranks):
   return False;
 
 def test():
-  sf = ["JC", "TC", "9C", "8C", "7C"]
-  fk = ["4C", "4D", "4H", "4S", "AC"]
-  fh = ["5S", "5H", "5D", "8S", "8H"]
+  "Test cases for the functions in poker program."
+  sf1 = "6C 7C 8C 9C TC".split() # Straight Flush
+  sf2 = "6D 7D 8D 9D TD".split() # Straight Flush
+  fk = "9D 9H 9S 9C 7D".split() # Four of a Kind
+  fh = "TD TC TH 7C 7D".split() # Full House
   ace_straight = ["AS", "2D", "3D", "4H", "5H"]
-  assert card_ranks(sf) == [11, 10, 9, 8, 7]
-  assert card_ranks(fk) == [14, 4, 4, 4, 4]
+  assert card_ranks(sf1) == [10, 9, 8, 7, 6]
+  assert card_ranks(fk) == [9, 9, 9, 9, 7]
   assert card_ranks(ace_straight) == [5, 4, 3, 2, 1]
-  assert poker([sf, fk, fh]) == [sf]
+  assert poker([sf1, sf2, fk, fh]) == [sf1, sf2]
 
 test()
+
+mydeck = [r + s for r in '23456789TJQK' for s in 'SHDC']
+
+def deal(numhands, n = 5, deck = mydeck):
+  """ Deal numhands with n cards each using the deck """
+  random.shuffle(deck)
+  return [deck[i*n : n*(i+1)] for i in range (0, numhands)]
+
+print deal(2)
