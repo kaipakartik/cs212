@@ -84,6 +84,6 @@ mydeck = [r + s for r in '23456789TJQK' for s in 'SHDC']
 def deal(numhands, n = 5, deck = mydeck):
   """ Deal numhands with n cards each using the deck """
   random.shuffle(deck)
-  return [deck[i*n : n*(i+1)] for i in range (0, numhands)]
+  return [deck[n*i : n*(i+1)] for i in range (0, numhands)]
 
 print deal(2)
