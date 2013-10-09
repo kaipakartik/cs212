@@ -35,8 +35,10 @@ def hand_rank(hand):
   return (0, ranks)
 
 def card_ranks(hand):
+  """ Return the ranks corresponding to a hand"""
   ranks = ['--23456789TJQKA'.index(r) for r,s in hand]
   ranks.sort(reverse = True)
+  # Handle the case where Ace is part of a low straight, A2345
   return [5, 4, 3, 2, 1] if (ranks == [14, 5, 4, 3, 2]) else ranks
 
 def kind(count, ranks):
@@ -45,13 +47,16 @@ def kind(count, ranks):
       return rank
 
 def straight(ranks):
+  """ Return true if the ranks form a straight"""
   return (max(ranks) - min(ranks) == 4) and len(set(ranks)) == 5;
 
 def flush(hand):
+  """ Return true if all the cards in the hand belong to a single suit"""
   suits = [s for r,s in hand]
   return len(set(suits)) == 1;
 
 def two_pair(ranks):
+  """ Return two pairs if present """
   high_pair = kind(2, ranks);
   low_pair = kind(2, sorted(ranks));
   if high_pair and high_pair != low_pair:
