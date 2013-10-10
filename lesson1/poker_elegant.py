@@ -37,6 +37,7 @@ def hand_rank(hand):
      0), ranks
 
 def group(items):
+  """Return a list of [(count, x)...] highest count first, then highest x"""
   groups = [(items.count(x), x) for x in set(items)]
   groups.sort(reverse = True)
   return groups
