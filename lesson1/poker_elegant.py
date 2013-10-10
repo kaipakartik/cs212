@@ -42,6 +42,10 @@ def group(items):
   return groups
 
 def unzip(pairs):
+  """ Takes a list of pairs and converts them into a pair of lists
+  For example [(3, 13), (2, 14), (1, 15)] is returned as
+  ([3,2,1], [13,14,15])
+  """
   return zip(*pairs)
 
 def card_ranks(hand):
