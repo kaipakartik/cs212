@@ -1,4 +1,5 @@
 import itertools
+import time
 
 def zebra_puzzle():
   """
@@ -60,7 +61,10 @@ def c(sequence):
 
 def instrument_function(fn, *args):
   c.starts, c.items = 0, 0
+  t0 = time.clock();
   result = fn(*args)
-  print ('%s got %s with %5d iters over %7d items' %(fn.__name__, result, c.starts, c.items))
+  t1 = time.clock()
+  print ('%s got %s with %5d iters over %7d items and took time %6.4f seconds'
+      %(fn.__name__, result, c.starts, c.items, t1 - t0))
 
 instrument_function(zebra_puzzle)
